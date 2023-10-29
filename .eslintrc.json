@@ -1,0 +1,28 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "jest":true
+    },
+    "extends": [
+        "react-app",
+        "standard-with-typescript",
+        "plugin:react/recommended",
+        "plugin:import/typescript"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },        
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project":"./tsconfig.json"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "quotes":["error","double",{"avoidEscape":true}],
+        "@typescript-eslint/restrict-plus-operands": "off"
+    }
+}
