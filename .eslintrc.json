@@ -5,10 +5,7 @@
         "jest":true
     },
     "extends": [
-        "react-app",
-        "standard-with-typescript",
-        "plugin:react/recommended",
-        "plugin:import/typescript"
+        "standard-with-typescript"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -16,13 +13,11 @@
         },        
         "ecmaVersion": "latest",
         "sourceType": "module",
-        "project":"./tsconfig.json"
+        "project": "./tsconfig.json"
     },
     "plugins": [
         "react"
     ],
     "rules": {
-        "quotes":["error","double",{"avoidEscape":true}],
-        "@typescript-eslint/restrict-plus-operands": "off"
     }
 }
