@@ -6,10 +6,10 @@ const Header: React.FC = () => {
   const navItems = ['Home', 'About', 'Projects', 'Skills', 'Connect']
   return (
     <motion.header
-      initial={{ opacity: 0, y: -50 }}
+      initial={{ opacity: 0, y: 0 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.5 }}
-      className="bg-neutral-700    p-4 flex flex-col md:flex-row   justify-between items-center"
+      className="bg-neutral-700  p-4 flex shadow-xl shadow-cyan-500 flex-col sm:flex-row  justify-between items-center"
     >
       <motion.div
         whileHover={{ scale: 1.1 }}
@@ -51,9 +51,9 @@ const Header: React.FC = () => {
         </div>
       </motion.div>
       <motion.div>
-      <nav className="flex flex-col md:flex-row">
+      <nav className="flex flex-col sm:flex-row">
         {navItems.map(item => (
-          <li className='list-none m-5'>
+          <li className='list-none md:m-5 m-[0.8rem] '>
             <Link to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}>
             <motion.ul
               key={item}
