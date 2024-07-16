@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import About from './About'
+import Project from './Project'
 interface Props {
   isVisible: boolean
 }
@@ -99,6 +100,7 @@ const Home: React.FC = () => {
         {isVisible ? <WelcomeScreenIntro /> : <></>}
       </div>
       <About/>
+      <Project/>
     </>
   )
 }

@@ -8,7 +8,7 @@ const About: React.FC = () => {
           className={ 'bg-transparent  h-[75%] w-[75%]  rounded-lg  overflow-hidden flex flex-col shadow-xl drop-shadow-lg  md:flex-row' }
           initial={{ scale: scrollY > 50 ? 1 : 0.85 }}
           animate={{ scale: scrollY > 50 ? 1 : 0.85, transition: { duration: 1.3 } }}
-          whileHover={{ scale: 1.01, boxShadow: '1px 1px #1de4dc', transition: { type: 'keyframes', duration: 1.4 } }}
+          whileHover={{ scale: 1.01, boxShadow: '1px 1px #1de4dc', transition: { type: 'keyframes', duration: 0.4 } }}
 
         >
           <motion.div className=" md:w-1/2 flex flex-col justify-center">
