@@ -1,7 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
 const Header: React.FC = () => {
   const navItems = ['Home', 'About', 'Projects', 'Skills', 'Connect']
   return (
@@ -9,7 +8,7 @@ const Header: React.FC = () => {
       initial={{ opacity: 0, y: 0 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.5 }}
-      className="bg-neutral-700  p-4 flex shadow-xl shadow-cyan-500 flex-col sm:flex-row  justify-between items-center"
+      className="bg-neutral-700  p-4 flex fixed z-[50] w-full shadow-xl shadow-cyan-500 flex-col sm:flex-row  justify-between items-center"
     >
       <motion.div
         whileHover={{ scale: 1.1 }}
@@ -26,7 +25,7 @@ const Header: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaLinkedin className="text-3xl hover:bg-cyan-500 hover:text-white rounded-full p-2" />
+          <FaLinkedin className="text-[2.5rem] hover:bg-cyan-500 hover:text-white rounded-full p-2" />
         </motion.a>
         <motion.a
           whileHover={{ scale: 1.2 }}
@@ -36,7 +35,7 @@ const Header: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaTwitter className="text-3xl hover:bg-cyan-500 hover:text-white rounded-full p-2" />
+          <FaTwitter className="text-[2.5rem] hover:bg-cyan-500 hover:text-white rounded-full p-2" />
         </motion.a>
         <motion.a
           whileHover={{ scale: 1.2 }}
@@ -46,7 +45,7 @@ const Header: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaInstagram className="text-3xl hover:bg-cyan-500 hover:text-white rounded-full p-2" />
+          <FaInstagram className="text-[2.5rem] hover:bg-cyan-500 hover:text-white rounded-full p-2" />
         </motion.a>
         </div>
       </motion.div>
@@ -54,8 +53,8 @@ const Header: React.FC = () => {
       <nav className="flex flex-col sm:flex-row">
         {navItems.map(item => (
           <li className='list-none md:m-5 m-[0.8rem] '>
-            <Link to={item === 'Home' ? '/' : `/${item.toLowerCase()}`}>
-            <motion.ul
+            <motion.a
+              href={item === 'Home' ? '' : `#${item.toLowerCase()}`}
               key={item}
               whileHover={{ scale: 1.1 }} // Hover effect
               className="text-cyan-500 uppercase text-center  font-Zilla font-semibold hover:text-white transition-colors  duration-300"
@@ -70,8 +69,7 @@ const Header: React.FC = () => {
                 {char}
               </motion.span>
               })}
-            </motion.ul>
-            </Link>
+            </motion.a>
           </li>
         ))}
       </nav>

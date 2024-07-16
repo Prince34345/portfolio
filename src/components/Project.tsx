@@ -1,31 +1,33 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import { projects, ProjectType } from '../../cons'
+import React, { useEffect, useRef, useState } from 'react'
+import { motion, useAnimation } from 'framer-motion'
+import { projects, type ProjectType } from '../constant/constants'
 
 const ProjectCard: React.FC<{ project: ProjectType }> = ({ project }) => {
-  const controls = useAnimation();
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isInView, setIsInView] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (cardRef.current) {
-        const rect = cardRef.current.getBoundingClientRect();
-        const inView = rect.top <= window.innerHeight && rect.bottom >= 0;
-        setIsInView(inView);
-      }
-    };
-
-    handleScroll(); // Check view on mount
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start({ opacity: 1, y: 0 });
+  const controls = useAnimation()
+  const cardRef = useRef<HTMLDivElement>(null)
+  const [isInView, setIsInView] = useState(false)
+  const handleScroll: () => void = () => {
+    if (cardRef.current !== null) {
+      const rect = cardRef.current.getBoundingClientRect()
+      const inView = rect.top <= window.innerHeight && rect.bottom >= 0
+      setIsInView(inView)
     }
-  }, [isInView, controls]);
+  }
+  const handleAnimation: () => Promise<void> = async () => {
+    try {
+      if (isInView) {
+        await controls.start({ opacity: 1, y: 0 })
+      }
+    } catch (err) {
+      throw new Error('message')
+    }
+  }
+  useEffect(() => {
+    handleScroll() // Check view on mount
+    window.addEventListener('scroll', handleScroll)
+    handleAnimation() as unknown
+    return () => { window.removeEventListener('scroll', handleScroll) }
+  }, [isInView, controls])
 
   return (
     <motion.div
@@ -33,7 +35,7 @@ const ProjectCard: React.FC<{ project: ProjectType }> = ({ project }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={controls}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="bg-white shadow-lg rounded-lg overflow-hidden mb-8"
+      className="shadow-2xl rounded-lg overflow-hidden mb-8"
     >
       <div className="relative">
         <motion.img
@@ -45,9 +47,9 @@ const ProjectCard: React.FC<{ project: ProjectType }> = ({ project }) => {
         />
       </div>
       <div className="p-6">
-        <h3 className="text-2xl font-bold mb-2">{project.name}</h3>
-        <p className="text-gray-700">{project.description}</p>
-        <div className="flex flex-wrap mt-4">
+        <h3 className="text-2xl font-bold mb-2 font-Quantico capitalize text-cyan-200 ">{project.name}</h3>
+        <p className="text-cyan-100 font-thin font-mono">{project.description}</p>
+        <div className="flex flex-wrap mt-4 textShadow">
           {project.tags.map((tag, index) => (
             <span
               key={index}
@@ -66,7 +68,7 @@ const ProjectCard: React.FC<{ project: ProjectType }> = ({ project }) => {
           >
             Source Code
           </a>
-          {project.projectLink && (
+          {(project.projectLink !== null) && (
             <a
               href={project.projectLink}
               target="_blank"
@@ -79,20 +81,20 @@ const ProjectCard: React.FC<{ project: ProjectType }> = ({ project }) => {
         </div>
       </div>
     </motion.div>
-  );
-};
+  )
+}
 
 const Project: React.FC = () => {
   return (
-    <div className="min-h-screen bg-neutral-100 p-4 flex flex-col items-center">
-      <h2 className="text-4xl font-bold mb-8 text-cyan-600">Projects</h2>
+    <motion.div id='projects' className="min-h-screen bg-neutral-700 p-4 flex flex-col items-center">
+      <h2 className="text-4xl font-bold mb-8 text-cyan-600  font-Merienda">Projects</h2>
       <div className="w-full max-w-4xl">
         {projects.map((project, index) => (
           <ProjectCard key={index} project={project} />
         ))}
       </div>
-    </div>
-  );
-};
+    </motion.div>
+  )
+}
 
-export default Project;
+export default Project

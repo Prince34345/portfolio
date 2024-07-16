@@ -8,7 +8,8 @@ module.exports = {
         OpenSans: ['Open Sans', 'sans-serif'],
         Titillium: ['Titillium Web', 'sans-serif'],
         Playfair: ['Playfair Display SC', 'serif'],
-        Quantico: ['Quantico', 'sans-serif']
+        Quantico: ['Quantico', 'sans-serif'],
+        Merienda: ['Merienda', 'cursive']
       }
     },
   },

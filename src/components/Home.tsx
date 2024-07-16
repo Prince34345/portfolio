@@ -1,25 +1,19 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import About from './About'
 import Project from './Project'
+import Skills from './Skills'
+import Connect from './Connect'
+import Footer from './Footer'
 interface Props {
   isVisible: boolean
 }
-const HeroSection: React.FC<Props> = ({ isVisible }) => {
-  const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 1100], [0, -1100])
+const LandingPage: React.FC<Props> = ({ isVisible }) => {
   return <>
-    <motion.img style={{ y }} src={require('../assets/logo.jpg')} className={`w-full  ${!isVisible ? 'blur-sm' : ''}  `} />
-  </>
-}
-
-const WelcomeScreenIntro: React.FC = () => {
-  return <>
-    <div className="sm:absolute sm:top-[20vw]  flex flex-col sm:flex-row items-center justify-center h-[50%] w-full overflow-hidden">
+    <motion.main className='flex flex-row justify-between bg-neutral-700 items-center h-full'>
+      <motion.section className='flex w-1/2 flex-grow  '>
       <motion.div
-        className="relative z-10 text-center text-white p-10"
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        className="relative z-10 text-center text-white p-5"
         transition={{ duration: 1, delay: 0.5 }}
       >
         <motion.h1
@@ -55,24 +49,22 @@ const WelcomeScreenIntro: React.FC = () => {
 
       {/* Background Elements */}
       <motion.div
-        className="absolute lg:visible invisible top-0 left-0 w-40 h-40 bg-cyan-500 opacity-30 rounded-full"
+        className="absolute lg:visible invisible top-48 left-48 w-40 h-40 bg-cyan-500 opacity-30 rounded-full"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: [0, 1.2, 1], opacity: 1 }}
         transition={{ duration: 2, delay: 1 }}
       />
       <motion.div
-        className="absolute lg:visible invisible bottom-0 right-0 w-60 h-60 bg-purple-500 opacity-30 rounded-full"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: [0, 1.2, 1], opacity: 1 }}
-        transition={{ duration: 2, delay: 1.5 }}
-      />
-      <motion.div
-        className="absolute lg:visible invisible top-0 right-0 w-24 h-24 bg-blue-500 opacity-30 rounded-full"
+        className="absolute lg:visible invisible top-66 left-24  w-24 h-24 bg-blue-500 opacity-30 rounded-full"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: [0, 1.2, 1], opacity: 1 }}
         transition={{ duration: 2, delay: 2 }}
       />
-    </div>
+      </motion.section>
+      <motion.section className='flex justify-center items-center w-1/2 h-1/2'>
+          <motion.img src={require('../assets/banner.jpg')} className={`bg-contain  ${!isVisible ? 'blur-sm' : ''}  `} />
+      </motion.section>
+    </motion.main>
   </>
 }
 const Home: React.FC = () => {
@@ -95,12 +87,14 @@ const Home: React.FC = () => {
   }, [])
   return (
     <>
-      <div className='bg-neutral-700  w-full h-full '>
-        <HeroSection isVisible={isVisible} />
-        {isVisible ? <WelcomeScreenIntro /> : <></>}
-      </div>
-      <About/>
-      <Project/>
+     <main className=' translate-y-[2%]' >
+        <LandingPage isVisible={isVisible}/>
+        <About />
+        <Project />
+        <Skills />
+        <Connect />
+        <Footer />
+      </main>
     </>
   )
 }

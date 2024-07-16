@@ -1,12 +1,12 @@
-export type ProjectTag = string;
+export type ProjectTag = string
 
-export type ProjectType = {
-  name: string;
-  description: string;
-  tags: ProjectTag[];
-  image: string;
-  sourceCodeLink: string;
-  projectLink?: string;
+export interface ProjectType {
+  name: string
+  description: string
+  tags: ProjectTag[]
+  image: string
+  sourceCodeLink: string
+  projectLink?: string
 };
 
 export const projects: ProjectType[] = [
@@ -16,7 +16,7 @@ export const projects: ProjectType[] = [
     tags: ['React', 'Node.js', 'MongoDB', 'Express'],
     image: 'https://via.placeholder.com/600x400', // Replace with actual image URL
     sourceCodeLink: 'https://github.com/username/ecommerce-frontend-backend',
-    projectLink: 'https://ecommerce-example.com',
+    projectLink: 'https://ecommerce-example.com'
   },
   {
     name: 'Duolingo Clone',
@@ -24,7 +24,7 @@ export const projects: ProjectType[] = [
     tags: ['React Native', 'Firebase'],
     image: 'https://via.placeholder.com/600x400', // Replace with actual image URL
     sourceCodeLink: 'https://github.com/username/duolingo-clone',
-    projectLink: 'https://duolingo-clone-example.com',
+    projectLink: 'https://duolingo-clone-example.com'
   },
   {
     name: 'Extra Project',
@@ -32,6 +32,11 @@ export const projects: ProjectType[] = [
     tags: ['Python', 'Flask', 'PostgreSQL'],
     image: 'https://via.placeholder.com/600x400', // Replace with actual image URL
     sourceCodeLink: 'https://github.com/username/extra-project',
-    projectLink: 'https://extra-project-example.com',
-  },
-];
+    projectLink: 'https://extra-project-example.com'
+  }
+]
+// skills section
+export const skills: string[] = [
+  'HTML', 'CSS', 'JavaScript', 'Express', 'jQuery', 'Node.js', 'MongoDB', 'React', 'Next.js',
+  'TypeScript', 'SQL', 'PostgreSQL', 'Python', 'Java', 'C++', 'SCSS', 'React Native', 'Linux', 'Git', 'GitHub'
+]
